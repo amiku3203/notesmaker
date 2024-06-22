@@ -1,0 +1,244 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+* {
+  box-sizing: border-box;
+}
+
+/* GLOBAL STYLES */
+
+body,
+.App {
+  font-family: 'Lora', serif; /* Changed to a serif font */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 16px;
+  background: url(https://www.toptal.com/designers/subtlepatterns/patterns/lightpaperfibers.png);
+  background-size: cover;
+}
+
+button {
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: #08c;
+  transition: color 0.3s ease;
+}
+
+button:hover {
+  color: #04c;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+/* SIDEBAR STYLES */
+
+.app-sidebar {
+  width: 100%;
+  height: 50vh;
+  border-bottom: 1px solid #ddd;
+  @media (min-width: 768px) {
+    width: 30%;
+    height: 100vh;
+    border-right: 1px solid #ddd;
+    border-bottom: none;
+  }
+}
+
+.app-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  animation: fadeIn 0.5s ease-in-out;
+  background-color: aqua;
+}
+
+.app-sidebar-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  transition: font-size 0.3s ease;
+  font-style:oblique;
+}
+
+.app-sidebar-notes {
+  height: calc(50vh - 78px);
+  overflow-y: scroll;
+  @media (min-width: 768px) {
+    height: calc(100vh - 78px);
+  }
+}
+
+.app-sidebar-note {
+  padding: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-note-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-sidebar-note button {
+  color: crimson;
+}
+
+.app-sidebar-note p {
+  margin: 10px 0;
+}
+
+.app-sidebar-note small {
+  display: block;
+  color: #999;
+}
+
+.app-sidebar-note:hover {
+  background: #ddd;
+  transform: scale(1.02);
+}
+
+.app-sidebar-note.active,
+.app-sidebar-note.active small {
+  background: #08c;
+  color: white;
+}
+
+/* NOTE EDITOR/PREVIEW (MAIN) STYLES */
+
+.app-main {
+  width: 100%;
+  height: 50vh;
+  @media (min-width: 768px) {
+    width: 70%;
+    height: 100vh;
+  }
+}
+
+.app-main-note-edit,
+.app-main-note-preview {
+  height: 50vh;
+}
+
+.no-active-note {
+  width: 100%;
+  height: 50vh;
+  line-height: 50vh;
+  text-align: center;
+  font-size: 2rem;
+  color: #999;
+  @media (min-width: 768px) {
+    width: 70%;
+    height: 100vh;
+    line-height: 100vh;
+  }
+}
+
+/* Editing */
+.app-main-note-edit {
+  padding: 25px;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.app-main-note-edit input,
+textarea {
+  display: block;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  width: 100%;
+  height: calc(50vh - 130px);
+  padding: 10px;
+  resize: none;
+  font-size: inherit;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.app-main-note-edit input {
+  height: 50px;
+  font-size: 2rem;
+}
+
+.app-main-note-edit input:focus,
+textarea:focus {
+  border-color: #08c;
+}
+
+/* Preview */
+.app-main-note-preview {
+  border-top: 1px solid #ddd;
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.02);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.preview-title {
+  padding: 25px 25px 0 25px;
+  margin: 0;
+}
+
+.markdown-preview {
+  padding: 0 25px 25px 25px;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+h1 {
+  font-size: large;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .app-sidebar {
+    width: 100%;
+    height: 50vh;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .app-main {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .app-main-note-edit,
+  .app-main-note-preview {
+    height: calc(50vh - 78px);
+  }
+
+  .no-active-note {
+    width: 100%;
+    height: 50vh;
+    line-height: 50vh;
+  }
+}
